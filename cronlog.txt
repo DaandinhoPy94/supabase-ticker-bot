@@ -1,0 +1,31 @@
+[dotenv@17.2.2] injecting env (3) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Please consider completing the survey at https://bit.ly/yahoo-finance-api-feedback if you haven't already; for more info see https://github.com/gadicc/node-yahoo-finance2/issues/764#issuecomment-2056623851.  This will only be shown once, but you can suppress this message in future with `yahooFinance.suppressNotices(['yahooSurvey'])`.
+Fetching crumb and cookies from https://finance.yahoo.com/quote/AAPL...
+fetch https://guce.yahoo.com/consent?brandType=nonEu&gcrumb=RHxJVrg&done=https%3A%2F%2Ffinance.yahoo.com%2Fquote%2FAAPL
+fetch https://consent.yahoo.com/v2/collectConsent?sessionId=3_cc-session_864f4f47-6a72-49a9-afc4-adbee105c6f9
+fetch https://consent.yahoo.com/v2/collectConsent?sessionId=3_cc-session_864f4f47-6a72-49a9-afc4-adbee105c6f9
+fetch https://guce.yahoo.com/copyConsent?sessionId=3_cc-session_864f4f47-6a72-49a9-afc4-adbee105c6f9&lang=nl-NL
+Fetching crumb and cookies from https://finance.yahoo.com/quote/AAPL?guccounter=1...
+We expected a redirect to guce.yahoo.com, but got https://finance.yahoo.com/quote/AAPL/
+We'll try to continue anyway - you can safely ignore this if the request succeeds
+Success. Cookie expires on Infinity
+fetch https://query1.finance.yahoo.com/v1/test/getcrumb
+New crumb: XQxqzPr7WYI
+Updated NVDA: $177.82 @ +057669-07-10T08:16:40.000Z
+Updated AAPL: $234.07 @ +057669-07-10T08:16:40.000Z
+Updated MSFT: $509.9 @ +057669-07-10T08:16:40.000Z
+Updated GOOGL: $240.8 @ +057669-07-10T08:00:00.000Z
+Updated TSLA: $395.94 @ +057669-07-10T08:16:40.000Z
+Updated ASML: $813.87 @ +057669-07-10T08:16:40.000Z
+Updated AMZN: $228.15 @ +057669-07-10T08:16:40.000Z
+Updated BIDU: $114.78 @ +057669-07-10T08:16:40.000Z
+Updated META: $755.59 @ +057669-07-10T08:16:40.000Z
+Updated BABA: $155.06 @ +057669-07-10T08:33:20.000Z
+Updated ORCL: $292.18 @ +057669-07-10T08:33:20.000Z
+Updated 0700.HK: $643.5 @ +057668-03-03T05:06:40.000Z
+Updated INTC: $24.08 @ +057669-07-10T08:16:40.000Z
+Updated IBM: $253.44 @ +057669-07-10T08:33:20.000Z
+Updated AMD: $158.57 @ +057669-07-10T08:16:40.000Z
+Updated CRM: $242.76 @ +057669-07-10T08:33:20.000Z
+Updated SAP: $257.16 @ +057669-07-10T08:33:20.000Z
+All tickers updated.
