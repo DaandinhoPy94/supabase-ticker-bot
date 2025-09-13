@@ -19,38 +19,46 @@ async function getActiveTickers() {
 }
 
 async function fetchQuote(symbol) {
-    try {
-      const result = await yahooFinance.quote(symbol);
-      const timestamp = result.regularMarketTime
-        ? new Date(result.regularMarketTime * 1000).toISOString()
-        : new Date().toISOString(); // fallback naar nu()
-      return {
-        value: result.regularMarketPrice,
-        quote_time: timestamp,
-        metadata: {
-          change: result.regularMarketChange,
-          change_pct: result.regularMarketChangePercent
-        }
-      };
-    } catch (e) {
-      console.error(`Error fetching quote for ${symbol}:`, e);
-      return null;
-    }
+  try {
+    const result = await yahooFinance.quote(symbol);
+    // BETER: Controleer op realistische tijd
+    const timestamp = (
+      result.regularMarketTime &&
+      result.regularMarketTime > 1000000000 && result.regularMarketTime < 2000000000
+    )
+      ? new Date(result.regularMarketTime * 1000).toISOString()
+      : new Date().toISOString(); // fallback naar nu()
+    return {
+      value: result.regularMarketPrice,
+      quote_time: timestamp,
+      metadata: {
+        change: result.regularMarketChange,
+        change_pct: result.regularMarketChangePercent
+      }
+    };
+  } catch (e) {
+    console.error(`Error fetching quote for ${symbol}:`, e);
+    return null;
   }
-
-async function upsertQuote(ticker, quote) {
-  if (!quote) return;
-  await supabase.from('ticker_quotes').insert({
-    ticker_id: ticker.id,
-    quote_time: quote.quote_time,
-    value: quote.value,
-    metadata: quote.metadata
-  });
-  await supabase
-    .from('tickers')
-    .update({ last_quote_time: quote.quote_time })
-    .eq('id', ticker.id);
 }
+
+
+  async function upsertQuote(ticker, quote) {
+    if (!quote) return;
+    const { error } = await supabase.from('ticker_quotes').insert({
+      ticker_id: ticker.id,
+      quote_time: quote.quote_time,
+      value: quote.value,
+      metadata: quote.metadata
+    });
+    if (error) {
+      console.error('Insert error:', error);
+    }
+    await supabase
+      .from('tickers')
+      .update({ last_quote_time: quote.quote_time })
+      .eq('id', ticker.id);
+  }  
 
 async function main() {
   const tickers = await getActiveTickers();
